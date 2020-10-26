@@ -243,10 +243,10 @@ function get20s(arr){
   var i;
   for (i=0; i<artists.length; i++) {
   console.log(artists[i].years);
-  if(artists[i].years === "1904 - 1989"){
+  if(artists[i].years.includes("1904 - 1989")){
   artist20th.push(artists[i].name);
    }
-    if(artists[i].years === "1907 - 1954"){
+    if(artists[i].years.includes("1907 - 1954")){
   artist20th.push(artists[i].name);
    }
   }
@@ -271,6 +271,7 @@ Create a function called `removeArtist` that takes two arguments:
 function removeArtist(arr, num) {
   arr.splice(num,1);
       console.log(arr.length);
+      return arr.length;
   }
     
   removeArtist(artists, 0);
@@ -299,8 +300,8 @@ function addArtist(arr){
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   }
 
-  arr.push(me);
-
+  Array.prototype.push.apply(arr, me)
+  return arr;
   }
 addArtist(artists);
   
@@ -315,7 +316,7 @@ and returns an array with names of artists who painted more than 100 paintings.
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
 function lotsOfArt(arr){
-
+  
   let artistPaint100 = [];
   var i;
   for (i=0; i<artists.length; i++) {
